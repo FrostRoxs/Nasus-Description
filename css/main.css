@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+    --header-height: 150px;
+    --header-space: 50px;
+    --size-margin-upbottom: 70px;
+    --size-margin-sides: 150px;
+    --size-flex-gap: 2em;
+    --color-header-bg: #1f1f1f;
+    --color-header-text: #fff;
+    --color-body-bg: #006199;
+    --color-main-text: #fff;
+    --color-main-link: #ddf;
+    --color-main-article-bg: #0005;
+    --color-footer-text: #fff;
+    --color-footer-bg: var(--color-header-bg);
+    --color-skins-title-bg: linear-gradient(#0000, #000a);
+
+    --timing-transtion: .2s ease-in-out;
+
+    font-family: 'Cinzel';
+}
+*{
+    box-sizing: border-box;
+}
+h1{
+    text-shadow: 0 0px 10px var(--color-header-text);
+}
+body{
+    margin: var(--header-height) 0 0 0;
+    background-color: var(--color-body-bg);
+}
+
+h2{
+    text-align: center;
+    text-shadow: 0px 0px 7px var(--color-header-bg);
+}
+/**********************
+        Header
+**********************/
+#header{
+    position: fixed;
+    top: 0;
+    left:0;
+    height: var(--header-height);
+    width: 100%;
+    padding: 0 var(--header-space);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-header-bg);
+    color: var(--color-header-text);
+    z-index: 100;
+}
+
+#header .left{
+    display: flex;
+}
+
+#header .left img{
+    height: calc(var(--header-height)*.9);
+    width: calc(var(--header-height)*.9);
+    padding-top: calc(var(--header-height)*.1);/*correction position logo*/
+}
+#header .left h1{
+    margin: auto;
+    margin-left: calc(var(--header-space)*.4);
+    font-weight: 600;
+}
+
+#header ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 2em;
+    font-size: 1.2em;
+}
+#header li a{
+    color: var(--color-header-text);
+    text-decoration: none;
+    position: relative;/*Pour fixer une position a notre element, ici il ne bouge pas*/
+    transition: color var(--timing-transtion);/*transition de couleur*/
+}
+#header li a:hover{
+    --color-header-text: var(--color-body-bg);/*couleur text passage souris*/
+}
+/* ::after pour creer un sous-element/sous-balise*/
+#header li a::after{
+    content:''; /*Vide pour que ça existe*/
+    display: block;/*pour pouvoir lui donner des dimentions*/
+    width: 0%; /*état par défaut, on ne voit pas le trait*/
+    height: 1px; /*largeur du trait*/
+    position: absolute;/*pour positionner le sous-element en dessous de notre element*/
+    bottom: 2px;
+    right: 0;/*Pour que le trait disparaisse par la droite*/
+    background-color: var(--color-header-text);/*la couleur du trait*/
+    transition: width var(--timing-transtion), background-color var(--timing-transtion);/*pour animimer la transition*/
+}
+/*a:hover -> lien avec passage de la souris ->a:hover::after -> sous-element de a quand passage de la souris*/
+#header li a:hover::after{
+    width: 100%; /*largeur finale*/
+    left:0;/*Pour que le trait apparaisse par la gauche*/
+}
+
+/**********************
+        Main
+**********************/
+
+main {
+    color: var(--color-main-text);
+    padding: var(--size-margin-upbottom) var(--size-margin-sides);
+}
+main a{
+    color: var(--color-main-link);
+}
+
+main>section:not(:last-child), .section-flex{
+     margin-bottom: var(--size-margin-upbottom);
+}
+.section-flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-flex-gap);
+    justify-content: center;
+}
+.section-flex section{
+    flex:1;
+    min-width: 400px;
+    max-width: 600px;
+}
+
+section[id]{
+    padding-top: var(--header-height);
+    margin-top: calc(var(--header-height)*-1);
+}
+/****** Spells ******/
+#spells div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    align-items: flex-start;
+}
+#spells article{
+    background-color: var(--color-main-article-bg);
+    padding: calc(var(--size-flex-gap)*.5);
+    border-radius: ;
+}
+
+#spells article:first-child{
+    border-radius: 10px 10px 0 0;
+}
+
+#spells article:last-child{
+    border-radius: 0 0 10px 10px;
+}
+#spells h3{
+    text-align: center;
+    margin:0 0 .5em;
+}
+#spells img{
+    float: left;
+    margin: 0 1em .4em 0;
+    vertical-align: middle;
+    height: 5em;
+}
+#spells article p{
+    margin: 0;
+}
+
+/****** Roles ******/
+#roles {
+    text-align: center;
+}
+#roles p{
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+/****** Tuto ******/
+#tuto {
+    line-height: 1.5em;
+}
+#tuto li{
+    padding-bottom: 1em;
+}
+
+/****** Items ******/
+#stuff {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: var(--size-flex-gap);
+    justify-content: center;
+}
+
+#stuff h2{
+    flex-basis: 100%;
+}
+#stuff article{
+    width: 350px;
+    text-align: center;
+    
+}
+#stuff div{
+    position: relative;
+    box-shadow: 5px 5px 10px var(--color-header-bg);
+    border-radius: 10px;
+}
+
+#stuff h3{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    margin: 0;
+    padding: 1em 0 0.3em;
+    text-align: center;
+    background: var(--color-skins-title-bg);
+    border-radius: 0 0 10px 10px;
+}
+
+#stuff img{
+    width: 100%;
+    height: 300px;
+    object-fit: initial;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+#stuff ul{
+    list-style: none;
+    padding: 0;
+}
+/****** Skins ******/
+#skins{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: var(--size-flex-gap);
+    justify-content: center;
+}
+#skins h2{
+    flex-basis: 100%;
+}
+#skins article{
+    width: 350px;
+    text-align: center;
+}
+#skins div{
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px var(--color-header-bg);
+}
+#skins h3{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    margin: 0;
+    padding: 1em 0 0.3em;
+    text-align: center;
+    background: var(--color-skins-title-bg);
+}
+
+#skins img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+
+/**********************
+        Footer
+**********************/
+#footer{
+    margin: var(--size-margin-upbottom) 0 0;
+    padding: var(--size-margin-upbottom) var(--size-margin-sides);
+    color: var(--color-footer-text);
+    background-color: var(--color-footer-bg);
+    position: relative;
+}
+
+#footer article{
+    display: flex;
+    justify-content: center;
+    flex: 3;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+}
+#footer article ul{
+    list-style: none;
+    padding: 0;
+}
+
+#footer h3{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#footer div {
+   
+}
+#footer>div{
+    position: absolute;
+    bottom: 0px;
+    right: 90px;
+    height: 100%;
+    display: flex;
+    
+}
+#footer>div a{
+    margin: auto
+}
+#footer>div img{ 
+    width: 3em;
+}
+article>div{
+    flex: 1;
+}
